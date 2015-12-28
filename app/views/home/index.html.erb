@@ -1,0 +1,64 @@
+
+<style>
+  body{
+    background-color: rgb(106, 106, 106);
+  }
+  h1{
+    color:white;
+  }
+  .btn-box{
+    border-radius: 3px;
+    background-color: rgb(187, 187, 187);
+  }
+  button{
+    font-size: 20px;
+    height: 60px;
+    width: 180px;
+    margin: 10px;
+    border-radius: 4px;
+    color:white;
+    border:0px;
+    background-color: rgb(79, 79, 79)
+  }
+</style>
+
+<body>
+<center class="container">
+  <div class="row">
+    <br>
+    <br>
+    <h1>Thinking of Mom & Dad</h1>
+    <br>
+    <div class="col-xs-12 btn-box">
+      <div class="col-xs-12 col-md-4">
+        <button>Max</button>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <button>Jake</button>
+      </div>
+      <div class="col-xs-12 col-md-4">
+        <button>Caroline</button>
+      </div>
+    </div>
+  </div>
+</center>
+</body>
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script>
+var messages = ["third", "first", "second"];
+
+$("button").each(function (idx){
+  var data = {args : messages[idx]};
+  $(this).click(function (e){
+    $.ajax({
+        type: "POST",
+        url: "https://api.particle.io/v1/devices/3f0020000e47343432313031/activate?access_token=8b2439c0e2c61259753e35803af98fe2953ac2ca",
+        data: data,
+        success: function (data) {
+          console.log("lit up section "+data.return_value);
+        }
+    });
+  });
+});
+</script>
